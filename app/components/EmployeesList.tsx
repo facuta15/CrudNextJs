@@ -1,5 +1,5 @@
+
 import { IEmployee } from "@/types/employees";
-import React from "react";
 import Employee from "./Employee";
 
 interface ListProps {

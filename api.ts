@@ -19,3 +19,15 @@ export const addEmployee =async (employee:IEmployee):Promise<IEmployee> =>{
     const newEmployee = await res.json();
     return newEmployee
 }
+
+export const editEmployee =async (employee:IEmployee):Promise<IEmployee> => {
+    const res = await fetch(`${baseURL}/${employee.id}`, {
+        method: "put",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(employee)
+    })
+    const updatedEmployee = await res.json();
+    return updatedEmployee;
+}
