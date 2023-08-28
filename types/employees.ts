@@ -1,6 +1,6 @@
 export interface IEmployee {
-    id: number;
-    name?: string | null,
-    job?: string | null,
+    id: string;
+    name?: string ,
+    job?: string ,
     age: string,
 }
