@@ -1,29 +1,6 @@
 {
   "employees": [
     {
-      "id": "1",
-      "name": "Pepo",
-      "age": 25,
-      "job": "x"
-    },
-    {
-      "id": "2",
-      "name": "Pipu",
-      "job": "y",
-      "age": 25
-    },
-    {
-      "id": "3",
-      "name": "Coc0",
-      "age": "257",
-      "job": "zv"
-    },
-    {
-      "id": "4",
-      "name": "caca",
-      "age": "20"
-    },
-    {
       "id": "7e0eff8f-e468-4feb-b21f-7744019dd74b",
       "name": "pepe",
       "age": "20",
@@ -40,12 +17,6 @@
       "name": "roro",
       "age": "20",
       "job": "Developer"
-    },
-    {
-      "id": "9f7330d5-b67f-4ece-9191-570698750e96",
-      "name": "asa",
-      "age": "",
-      "job": ""
     },
     {
       "id": "c3efc82a-add0-4521-aed9-2da1ed176d5e",

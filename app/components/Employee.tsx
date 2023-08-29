@@ -5,15 +5,15 @@ import { AiFillEdit, AiOutlineDelete } from "react-icons/ai";
 import { FormEventHandler, useState } from "react";
 import Modal from "./Modal";
 import { useRouter } from "next/navigation";
-import { editEmployee } from "@/api";
+import { deleteEmployee, editEmployee } from "@/api";
 
 interface EmployeeProps {
   employee: IEmployee;
 }
 const Employee: React.FC<EmployeeProps> = ({ employee }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [modalOpenEdit, setModalEditOpen] = useState<boolean>(false);
-  const [modalOpenDelete, setModalDeleteOpen] = useState<boolean>(false);
+  const [modalOpenDelete, setModalOpenDelete] = useState<boolean>(false);
   const [employeeEdit, setEmployeeEdit] = useState<IEmployee>({
     id: employee.id,
     name: employee.name,
@@ -24,9 +24,15 @@ const Employee: React.FC<EmployeeProps> = ({ employee }) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     await editEmployee(employeeEdit);
-    
-    setModalEditOpen(false)
-    router.refresh()
+
+    setModalEditOpen(false);
+    router.refresh();
+  };
+
+  const handleDelete = async (id: string) => {
+    await deleteEmployee(id);
+    setModalOpenDelete(false);
+    router.refresh();
   };
 
   return (
@@ -35,11 +41,13 @@ const Employee: React.FC<EmployeeProps> = ({ employee }) => {
       <td>{employee.job}</td>
       <td>{employee.age}</td>
       <td className="flex gap-5">
-        <button onClick={()=>{
-          setModalEditOpen(true)
-        }}>
+        <button
+          onClick={() => {
+            setModalEditOpen(true);
+          }}
+        >
           <AiFillEdit className="text-blue-500" size={25} />
-        </button  >
+        </button>
         <Modal modalOpen={modalOpenEdit} setModalOpen={setModalEditOpen}>
           <form onSubmit={handleSubmit}>
             <h3 className="font-bold text-lg">Add new employee</h3>
@@ -91,9 +99,26 @@ const Employee: React.FC<EmployeeProps> = ({ employee }) => {
             </button>
           </form>
         </Modal>
-        <button>
+        <button
+          onClick={() => {
+            setModalOpenDelete(true);
+          }}
+        >
           <AiOutlineDelete className="text-red-500" size={25} />
         </button>
+        <Modal modalOpen={modalOpenDelete} setModalOpen={setModalOpenDelete}>
+          <h3 className="text-lg text-center">Are you sure?</h3>
+          <div className="modal-action ">
+            <button
+              className="btn text-center"
+              onClick={() => {
+                handleDelete(employee.id);
+              }}
+            >
+              Yes
+            </button>
+          </div>
+        </Modal>
       </td>
     </tr>
   );

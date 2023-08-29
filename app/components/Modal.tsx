@@ -1,4 +1,4 @@
-
+"use-client"
 
 interface ModalProps {
   modalOpen: boolean;

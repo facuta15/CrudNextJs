@@ -31,3 +31,9 @@ export const editEmployee =async (employee:IEmployee):Promise<IEmployee> => {
     const updatedEmployee = await res.json();
     return updatedEmployee;
 }
+
+export const deleteEmployee =async (id:string):Promise<void> => {
+    await fetch(`${baseURL}/${id}`, {
+        method: "delete", 
+    })
+}
